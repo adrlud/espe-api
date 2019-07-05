@@ -1,0 +1,20 @@
+version: '3'
+services:
+    db:
+        image: postgres:11.4-alpine
+        environment:
+            POSTGRES_PASSWORD: 1234
+        volumes:
+            - ./data:/var/lib/postgresql/data
+        ports:
+            - '5432:5432'
+        container_name: db
+    web:
+        build: .
+        command: python manage.py runserver 0.0.0.0:8000
+        working_dir: /tmp/app
+        volumes:
+            - ./app:/tmp/app
+        ports:
+            - '8000:8000'
+        container_name: django
