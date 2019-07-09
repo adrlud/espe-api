@@ -4,6 +4,7 @@ services:
         image: postgres:11.4-alpine
         environment:
             POSTGRES_PASSWORD: 1234
+            POSTGRES_USER: espe
         volumes:
             - ./data:/var/lib/postgresql/data
         ports:
@@ -11,10 +12,10 @@ services:
         container_name: db
     web:
         build: .
-        command: python manage.py runserver 0.0.0.0:8000
+        command: uvicorn main:app --host 0.0.0.0 --reload
         working_dir: /tmp/app
         volumes:
             - ./app:/tmp/app
         ports:
             - '8000:8000'
-        container_name: django
+        container_name: web
