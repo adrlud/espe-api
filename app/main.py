@@ -40,6 +40,10 @@ class Device(DeviceCreate):
     id: int
 
 
+class MeasurementCreate(BaseModel):
+    device_id: int
+    value: float
+
 
 ##########
 # ROUTES #
@@ -55,3 +59,9 @@ async def read_devices():
 async def create_device(device: DeviceCreate) -> Device:
     id = await db.execute(devices.insert(device.dict()))
     return {**device.dict(), 'id': id}
+
+
+@app.post('/measurements', response_model={})
+async def create_measurement(measurement: MeasurementCreate):
+    id = await db.execute(measurements.insert(measurement.dict()))
+    return {}
