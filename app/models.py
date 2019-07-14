@@ -17,5 +17,6 @@ measurements = SQL.Table(
     metadata,
     SQL.Column('id', SQL.Integer, primary_key=True),
     SQL.Column('created_at', SQL.DateTime),
-    SQL.Column('value', SQL.Float),
+    SQL.Column('device_id', SQL.Integer),
+    SQL.Column('reading', SQL.Float),
 )

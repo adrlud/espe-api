@@ -42,7 +42,7 @@ class Device(DeviceCreate):
 
 class MeasurementCreate(BaseModel):
     device_id: int
-    value: float
+    reading: float
 
 
 ##########
