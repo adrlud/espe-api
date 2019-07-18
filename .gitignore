@@ -1,4 +1,5 @@
 activate.fish
 data/*
 __pycache__
+.mypy_cache
 *.pyc

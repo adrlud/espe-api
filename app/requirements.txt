@@ -2,3 +2,4 @@ fastapi>=0.31
 uvicorn>=0.8
 databases>=0.2
 databases[postgresql]>=0.2
+asyncpg
