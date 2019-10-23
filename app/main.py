@@ -70,9 +70,11 @@ class Event(BaseModel):
 # ROUTES #
 ##########
 
-@app.get('/events', response_model=List[Event])
+@app.get('/events/{device_id}', response_model=List[Event])
 async def read_events():
-    data = await db.fetch_all(models.measurements.select())
+    data = await db.query(models.measurements).filter(models.measurements.device_id == device_id).all()
+    if data is None:
+        raise HTTPException(status_code=404, detail="Device not found")
     return da.get_events(data)
 
 
