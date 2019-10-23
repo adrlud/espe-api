@@ -72,7 +72,8 @@ class Event(BaseModel):
 
 @app.get('/events/{device_id}', response_model=List[Event])
 async def read_events(device_id: int):
-    data = await db.fetch_all(models.measurements.select().where(models.measurements.device_id == device_id))
+    query = "SELECT * FROM measurements WHERE device_id = :device_id"
+    data = await db.fetch_all(query = query, values = {"device_id": device_id})
     if data is None:
         raise HTTPException(status_code=404, detail="Device not found")
     return da.get_events(data)
