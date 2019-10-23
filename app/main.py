@@ -7,6 +7,7 @@ from databases import Database
 from asyncpg.exceptions import ForeignKeyViolationError
 
 import models
+import data_analys as da
 from settings import DATABASES
 
 
@@ -60,9 +61,19 @@ class Message(BaseModel):
     message: str
 
 
+class Event(BaseModel):
+    id: int
+    datetime: str
+    count: int
+
 ##########
 # ROUTES #
 ##########
+
+@app.get('/events', response_model=List[Event])
+async def read_events():
+    data = await db.fetch_all(models.measurements.select())
+    return da.get_events(data)
 
 
 @app.get('/devices', response_model=List[Device])
