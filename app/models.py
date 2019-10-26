@@ -9,7 +9,7 @@ devices = SQL.Table(
     metadata,
     SQL.Column('id', SQL.Integer, primary_key=True),
     SQL.Column('name', SQL.String),
-    SQL.Column('active', SQL.Boolean, nullable=True),
+    SQL.Column('active', SQL.Boolean),
     SQL.Column('connected', SQL.Boolean),
 )
 
