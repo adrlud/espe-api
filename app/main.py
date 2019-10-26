@@ -86,10 +86,10 @@ async def read_events(device_id: int):
 async def read_devices():
     return await db.fetch_all(models.devices.select())
 
-@app.get('/device/{device_id}', response_model=dict())
+@app.get('/device/{device_id}', response_model=Device)
 async def read_device(device_id: int):
     query = "SELECT id, name, active, connected FROM devices WHERE id = :device_id"
-    return await db.fetch_all(query = query, values = {"device_id": device_id})
+    return await db.fetch_one(query = query, values = {"device_id": device_id})
 
 
 @app.post('/devices', response_model=Device)
