@@ -114,7 +114,7 @@ async def create_measurements(device_id: int, measurements: MeasurementCreate):
 async def update_settings(device_id: int):
     query = "UPDATE devices SET active= True WHERE id= :device_id"
     try:
-        await db.fetch_one(query = query, values = {"device_id" = device_id})
+        await db.fetch_one(query = query, values = {"device_id": device_id})
         return {'message': 'Device setting updated'}
     except ForeignKeyViolationError:
         msg = 'No device with this id'
@@ -124,7 +124,7 @@ async def update_settings(device_id: int):
 async def update_settings(device_id: int):
     query = "UPDATE devices SET active= FALSE WHERE id= :device_id" 
     try:
-        await db.fetch_one(query = query, values = {"device_id" = device_id})
+        await db.fetch_one(query = query, values = {"device_id": device_id})
         return {'message': 'Device updated'}
     except ForeignKeyViolationError:
         msg = 'No device with this id'
