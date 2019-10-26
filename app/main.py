@@ -44,6 +44,8 @@ class DeviceCreate(DeviceBase):
 
 class Device(DeviceBase):
     id: int
+    active: bool  #If turned on by user
+    connected: bool #If a connection can be etablished
 
 
 class Reading(BaseModel):
@@ -104,6 +106,26 @@ async def create_measurements(device_id: int, measurements: MeasurementCreate):
     try:
         await db.execute(models.measurements.insert(to_insert))
         return {'message': 'Measurements successfully inserted'}
+    except ForeignKeyViolationError:
+        msg = 'No device with this id'
+        raise HTTPException(status_code=404, detail=msg)
+
+@app.post('/device/{device_id}/activate', response_model=Message)
+async def update_settings(device_id: int):
+    query = "UPDATE devices SET active= True WHERE id= :device_id"
+    try:
+        await db.fetch_one(query = query, values = {"device_id" = device_id})
+        return {'message': 'Device setting updated'}
+    except ForeignKeyViolationError:
+        msg = 'No device with this id'
+        raise HTTPException(status_code=404, detail=msg)
+
+@app.post('/device/{device_id}/deactivate', response_model=Message)
+async def update_settings(device_id: int):
+    query = "UPDATE devices SET active= FALSE WHERE id= :device_id" 
+    try:
+        await db.fetch_one(query = query, values = {"device_id" = device_id})
+        return {'message': 'Device updated'}
     except ForeignKeyViolationError:
         msg = 'No device with this id'
         raise HTTPException(status_code=404, detail=msg)
