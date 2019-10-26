@@ -2,6 +2,8 @@ CREATE TABLE devices (
 	id SERIAL PRIMARY KEY,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	name TEXT NOT NULL
+	active BOOLEAN
+	connected BOOLEAN
 );
 
 CREATE TABLE measurements (

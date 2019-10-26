@@ -6,6 +6,8 @@ from pydantic import BaseModel
 class Device(BaseModel):
     id: int
     name: str
+    active: bool
+    connected: bool
 
 
 class Measurement(BaseModel):
