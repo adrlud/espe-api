@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 from datetime import datetime, timedelta
 
 from fastapi import FastAPI, HTTPException
@@ -44,6 +44,7 @@ class DeviceCreate(DeviceBase):
 
 class Device(DeviceBase):
     id: int
+    name:str
     active: bool  #If turned on by user
     connected: bool #If a connection can be etablished
 
@@ -85,7 +86,7 @@ async def read_events(device_id: int):
 async def read_devices():
     return await db.fetch_all(models.devices.select())
 
-@app.get('/device/{device_id}', response_model=Device)
+@app.get('/device/{device_id}', response_model=Dickt(Device))
 async def read_device(device_id: int):
     query = "SELECT * FROM devices WHERE id = :device_id"
     return await db.fetch_all(query = query, values = {"id": device_id})
