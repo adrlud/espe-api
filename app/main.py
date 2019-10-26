@@ -87,8 +87,8 @@ async def read_devices():
 
 @app.get('/device/{device_id}', response_model=Device)
 async def read_device(device_id: int):
-    query = "SELECT * FROM devices WHERE device_id = :device_id"
-    return await db.fetch_one(query = query, values = {"device_id": device_id})
+    query = "SELECT * FROM devices WHERE id = :device_id"
+    return await db.fetch_one(query = query, values = {"id": device_id})
 
 
 @app.post('/devices', response_model=Device)
