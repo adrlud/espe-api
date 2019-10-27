@@ -60,13 +60,13 @@ def get_events(x):
         if last_reading == 0 and reading > 0:
             spike = Spike(your_list)
             spike.start_index = i
-            spike.date = item['created_at'].__str__()
+            
             spikes.append(spike)
             
 
         if last_reading > 0 and reading == 0:
             spikes[-1].end_index = i
-            
+            spikes[-1].date = item['created_at'].__str__()
 
         last_reading = reading
         i += 1
