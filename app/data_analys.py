@@ -54,7 +54,6 @@ def get_events(x):
     
    
     spikes = [Spike]
-    print(your_list)
     for item in your_list:
         reading = float(item['reading'])
         if last_reading == 0 and reading > 0:
