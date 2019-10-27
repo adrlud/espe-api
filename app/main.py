@@ -100,21 +100,24 @@ async def create_device(device: DeviceCreate):
 
 @app.post('/device/{device_id}', response_model=Message)
 async def create_measurements(device_id: int, measurements: MeasurementCreate):
-    current_time = datetime.now()
-    to_insert = [{
-        'reading': measurement.reading,
-        'device_id': device_id,
-        'created_at': (
-            current_time + timedelta(milliseconds=measurement.timedelta)
-        ),
-    } for measurement in measurements.readings]
-
-    try:
-        await db.execute(models.measurements.insert(to_insert))
-        return {'message': 'Measurements successfully inserted'}
-    except ForeignKeyViolationError:
-        msg = 'No device with this id'
-        raise HTTPException(status_code=404, detail=msg)
+    
+    query = "SELECT active FROM devices WHERE id = :device_id"
+    active = await db.fetch_one(query = query, values = {"device_id": device_id})
+    if( active['active'] == True ):
+        current_time = datetime.now()
+        to_insert = [{
+            'reading': measurement.reading,
+            'device_id': device_id,
+            'created_at': (
+                current_time + timedelta(milliseconds=measurement.timedelta)
+            ),
+        } for measurement in measurements.readings]
+        try:
+            await db.execute(models.measurements.insert(to_insert))
+            return {'message': 'Measurements successfully inserted'}
+        except ForeignKeyViolationError:
+            msg = 'No device with this id'
+            raise HTTPException(status_code=404, detail=msg)
 
 @app.post('/device/{device_id}/activate', response_model=Message)
 async def update_settings(device_id: int):
