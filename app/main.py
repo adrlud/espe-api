@@ -118,6 +118,9 @@ async def create_measurements(device_id: int, measurements: MeasurementCreate):
         except ForeignKeyViolationError:
             msg = 'No device with this id'
             raise HTTPException(status_code=404, detail=msg)
+    else:
+        print(device_id, "Insert not executed)")
+
 
 @app.post('/device/{device_id}/activate', response_model=Message)
 async def update_settings(device_id: int):
