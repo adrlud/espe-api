@@ -16,7 +16,7 @@ from settings import DATABASES
 app = FastAPI()
 db = Database(DATABASES['development']['url'])
 
-oauth2_sheme = OAuth2PasswordBearer(tokenUrl="/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 
 #########
 # SETUP #
