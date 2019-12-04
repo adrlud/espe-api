@@ -2,9 +2,11 @@ from typing import List, Dict
 from datetime import datetime, timedelta
 
 from fastapi import FastAPI, HTTPException
+from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel, Schema
 from databases import Database
 from asyncpg.exceptions import ForeignKeyViolationError
+
 
 import models
 import data_analys as da
@@ -14,6 +16,7 @@ from settings import DATABASES
 app = FastAPI()
 db = Database(DATABASES['development']['url'])
 
+oauth2_sheme = OAuth2PasswordBearer(tokenUrl="/token")
 
 #########
 # SETUP #
@@ -72,6 +75,10 @@ class Event(BaseModel):
 ##########
 # ROUTES #
 ##########
+
+@app.get("/items/")
+async def read_items(token: str = Depends(oauth2_scheme)):
+    return {"token": token}
 
 @app.get('/events/{device_id}', response_model=List[Event])
 async def read_events(device_id: int):
