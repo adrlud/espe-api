@@ -4,10 +4,6 @@ import datetime
 import models
 
 
-#with open('espe_data4.csv', 'r') as f:
- #reader = csv.reader(f)
- #your_list = list(reader)
-
 
 class Spike:
     your_list = []
