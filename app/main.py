@@ -81,9 +81,6 @@ async def read_events(device_id: int):
         raise HTTPException(status_code=404, detail="Device not found")
     return da.get_events(data)
 
-@app.get('/test', response_model=List[Device])
-async def read_test():
-    return await db.fetch_all(models.devices.select())
 
 @app.get('/devices', response_model=List[Device])
 async def read_devices():
