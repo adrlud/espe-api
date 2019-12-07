@@ -11,7 +11,7 @@ from users_request import get_current_user
 import models
 import data_analys as da
 from settings import DATABASES
-
+from schemas import User
 
 app = FastAPI()
 db = Database(DATABASES['development']['url'])
