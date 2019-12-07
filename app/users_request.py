@@ -1,6 +1,9 @@
-from main import oauth2_scheme
 
+from schemas import User
+from fastapi.security import OAuth2PasswordBearer
+from fastapi import FastAPI, HTTPException, Depends
 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 
 def fake_decode_token(token):
     return User(
