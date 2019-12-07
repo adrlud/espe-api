@@ -7,7 +7,7 @@ from pydantic import BaseModel, Schema
 from databases import Database
 from asyncpg.exceptions import ForeignKeyViolationError
 
-
+from users_request import get_current_user
 import models
 import data_analys as da
 from settings import DATABASES
@@ -76,9 +76,9 @@ class Event(BaseModel):
 # ROUTES #
 ##########
 
-@app.get("/items/")
-async def read_items(token: str = Depends(oauth2_scheme)):
-    return {"token": token}
+@app.get("/users/me")
+async def read_users_me(current_user: User = Depends(get_current_user)):
+    return user
 
 @app.get('/events/{device_id}', response_model=List[Event])
 async def read_events(device_id: int):
