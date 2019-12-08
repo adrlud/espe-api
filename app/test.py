@@ -21,7 +21,10 @@ class TestUser(unittest.TestCase):
                 },
             } 
         result = users_request.get_user(data, "johndoe")
+        result2 = users_request.get_user(data, "alice")
         self.assertEqual(result, data["johndoe"])
+        self.assertNotEqual(result2, data["alice"])
+
 
 
 if __name__ == '__main__':
