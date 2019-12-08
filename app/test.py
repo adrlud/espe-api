@@ -21,7 +21,8 @@ class TestUser(unittest.TestCase):
                 },
             } 
         result = users_request.get_user(data, "johndoe")
-        self.assertDictEqual(re, data["johndoe"])
+        self.assertEqual(re, data["johndoe"])
+
 
 
 
