@@ -81,7 +81,7 @@ class Event(BaseModel):
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     user_dict = fake_users_db.get(form_data.username)
     if not user_dict:
-        raise HTTPException(status_code = 400, detail = "Incorrect credentials")
+        raise HTTPException(status_code =400, detail = "Incorrect credentials")
     user = UserInDB(**user_dict)
     hashed_password = fake_hash_password(form_data.password)
     if not hashed_password == user.hashed_password:
