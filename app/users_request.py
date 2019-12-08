@@ -27,13 +27,12 @@ def fake_hash_password(password: str):
 
 class UserInDB(User):
     hashed_password: str
-    
+
 
 def get_user(db, username: str): 
     if username in db:
         user_dict = db[username]
         return UserInDB(**user_dict)
-
 
 
 def fake_decode_token(token):
