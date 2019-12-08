@@ -19,3 +19,5 @@ services:
         ports:
             - '8000:8000'
         container_name: web
+    test:
+        command: python -m unittest test
