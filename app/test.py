@@ -33,7 +33,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(user.username, "johndoe" )
     def test_fake_hash_password(self):
         result = users_request.fake_hash_password("PASSWORD")
-        self.assertEqual(result, "faskehashedPASSWORD")
+        self.assertEqual(result, "fakehashedPASSWORD")
         
 
 
