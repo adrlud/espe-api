@@ -1,2 +1,2 @@
 
-docker-compose -t exec web python -m unittest test
+docker-compose exec web python -m unittest test
