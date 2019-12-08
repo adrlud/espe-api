@@ -28,7 +28,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(result2, data["alice"])
     
     def test_get_current_user(self):
-        await user = users_request.get_current_user()
+        user = users_request.fake_decode_token("johndoe")
        
         self.assertEqual(user.username, "johndoe" )
 
