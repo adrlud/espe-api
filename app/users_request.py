@@ -22,7 +22,7 @@ fake_users_db = {
     },
 }
 
-def fake_decode_password(password: str):
+def fake_hash_password(password: str):
     return "fakehashed" + password
 
 class UserInDB(User):
