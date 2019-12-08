@@ -27,9 +27,7 @@ def fake_hash_password(password: str):
 
 class UserInDB(User):
     hashed_password: str
-
-
-
+    
 
 def get_user(db, username: str): 
     if username in db:
