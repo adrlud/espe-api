@@ -83,7 +83,6 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     if not user_dict:
         raise HTTPException(status_code = 400, detail = "Incorrect credentials")
     user = UserInDB(**user_dict)
-
     hashed_password = fake_hash_password(form_data.password)
     if not hashed_password == user.hashed_password:
         raise HTTPException(status_code=400, detail="Incorrect password")

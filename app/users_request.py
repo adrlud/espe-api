@@ -47,7 +47,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     if not user:
         raise HTTPException(status_code = HTTP_401_UNAUTHORIZED,
                             detail="Invalid authentication credentials",
-                            headers={"WWW-Authenticate": "Bearer"},
+                            headers={"WWW-Authenticate": "bsearer"},
     )
     return user
 
