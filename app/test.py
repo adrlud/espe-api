@@ -1,7 +1,7 @@
 import unittest
 #target = __import__("app/users_request.py")
 #users_request = target.users_request
-from app import users_request 
+import users_request 
 class TestUser(unittest.TestCase):
     def test_get_user(self):
         data =  {
