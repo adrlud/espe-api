@@ -12,7 +12,7 @@ import models
 import data_analys as da
 from settings import DATABASES
 from schemas import User
-from users_request import UserInDB, fake_hash_password,
+from users_request import UserInDB, fake_hash_password
 
 app = FastAPI()
 db = Database(DATABASES['development']['url'])
