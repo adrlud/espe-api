@@ -29,7 +29,7 @@ class TestUser(unittest.TestCase):
     
     def test_get_current_user(self):
         user = users_request.fake_decode_token("johndoe")
-       
+        print(user)
         self.assertEqual(user.username, "johndoe" )
 
 
