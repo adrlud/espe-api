@@ -23,7 +23,7 @@ class TestUser(unittest.TestCase):
         result = users_request.get_user(data, "johndoe")
         result2 = users_request.get_user(data, "alice")
         self.assertEqual(result, data["johndoe"])
-        self.assertEqual(result2, 2)
+        self.assertEqual(result2, data["aice"])
 
 
 
