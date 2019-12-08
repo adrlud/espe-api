@@ -29,8 +29,12 @@ class TestUser(unittest.TestCase):
     
     def test_get_current_user(self):
         user = users_request.fake_decode_token("johndoe")
-        print(user)
+        
         self.assertEqual(user.username, "johndoe" )
+    def test_fake_hash_password(self):
+        result = users_request.fake_hash_password("PASSWORD")
+        self.assertEqual(result, "faskehashedPASSWORD")
+        
 
 
 
