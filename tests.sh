@@ -1,2 +1,2 @@
-#!/bin/bash
-python run unittest test 
+
+docker-compose exec web python -m unittest test
