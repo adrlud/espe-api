@@ -7,7 +7,7 @@ from pydantic import BaseModel, Schema
 from databases import Database
 from asyncpg.exceptions import ForeignKeyViolationError
 
-from users_request import get_current_user, get_current_active_user
+from users_request import get_current_user, get_current_active_user, fake_users_db
 import models
 import data_analys as da
 from settings import DATABASES
