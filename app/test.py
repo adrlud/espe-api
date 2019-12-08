@@ -30,7 +30,7 @@ class TestUser(unittest.TestCase):
     def test_get_current_user(self):
         await user = users_request.get_current_user()
        
-       self.assertEqual(user.username, "johndoe" )
+        self.assertEqual(user.username, "johndoe" )
 
 
 
