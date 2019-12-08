@@ -2,7 +2,7 @@ from typing import List, Dict
 from datetime import datetime, timedelta
 
 from fastapi import FastAPI, HTTPException, Depends
-from fastapi.security import OAuth2PasswordBearer
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel, Schema
 from databases import Database
 from asyncpg.exceptions import ForeignKeyViolationError
