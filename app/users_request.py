@@ -1,6 +1,6 @@
 
 from schemas import User
-from fastapi.security import OAuth2PasswordBearer
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi import FastAPI, HTTPException, Depends
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
